@@ -1,0 +1,33 @@
+td.w2p_fc {color:grey;font-style:italic}
+
+.encerrado {border-style:groove;border-width:10px; border-radius:10px}
+
+.modal-body {
+    max-height: 100%;
+    max-width: 100%;
+    overflow-y:'auto';
+}
+
+#nuevocliente 
+{
+    width: 700px; 
+    margin-top: -300px !important;
+    margin-left:  -350px !important; 
+} 
+
+#nuevocliente .modal-body {
+    max-height: 525px;
+}
+
+#nuevoempleado 
+{
+    width: 700px; 
+    margin-top: -300px !important;
+    margin-left:  -350px !important; 
+} 
+
+#nuevoempleado .modal-body {
+    max-height: 525px;
+}
+
+select{overflow:hidden}

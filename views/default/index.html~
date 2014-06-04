@@ -1,0 +1,14 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,True}}
+{{extend 'layout.html'}}
+
+{{=A(I(_class='icon icon-user icon-white'),' Ver clientes', _href=URL('default','clientes'), _class='btn btn-primary btn-large')}}
+
+{{=A(I(_class='icon icon-file icon-white'),' Ver certificados', _href=URL('default','certificados'), _class='btn btn-primary btn-large')}}
+
+{{=A(I(_class='icon icon-money icon-white'),' Ver cobros', _href=URL('default','cobros'), _class='btn btn-primary btn-large')}}
+
+{{=A(I(_class='icon icon-group icon-white'),' Fumigadores', _href=URL('default','fumigadores'), _class='btn btn-primary btn-large')}}
+
+{{block right_sidebar}}
+<h1>Certificados por vencer</h1>
+{{end}}
