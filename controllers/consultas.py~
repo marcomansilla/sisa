@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+@auth.requires_login()
 def certificados():
 
     cliente=db(db.clientes.id==request.args(1)).select()
@@ -22,15 +23,15 @@ def certificados():
         
     return dict(certificados=certificados, nCertificado=nCertificado)
 
-
+@auth.requires_login()
 def cobros():
     cliente=db(db.clientes.id==request.args(0)).select()
     response.subtitle+=" Cobros al cliente "+cliente[0].nombre.capitalize()+" "+cliente[0].apellido.capitalize()
-    cobros=db((db.certificados.establecimiento==request.args(0))&(db.cobros.certificado==db.certificados.id)&(db.establecimientos.cliente==db.clientes.id)).select()
+    cobros=db((db.certificados.establecimiento==db.establecimientos.id)&(db.cobros.certificado==db.certificados.id)&(db.establecimientos.cliente==request.args(0))).select()
 
     return dict(cobros=cobros)
     
-
+@auth.requires_login()
 def establecimientos():
 
     cliente=db(db.clientes.id==request.args(0)).select()
@@ -50,3 +51,8 @@ def establecimientos():
         response.flash="Revise los datos ingresados"
     
     return dict(nSucursal=nSucursal, sucursales=sucursales)
+
+@auth.requires_login()
+def imprimircertificado():
+    certificado=db((db.certificados.id==request.args(0))&(db.certificados.establecimiento==db.establecimientos.id)&(db.clientes.id==db.establecimientos.cliente)).select()
+    return dict(certificado=certificado)
