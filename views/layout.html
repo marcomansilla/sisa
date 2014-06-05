@@ -80,6 +80,7 @@
     <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
     <script src="{{=URL('static','js/web2py_bootstrap.js')}}"></script>
     <script src="{{=URL('static','js/jquery.dataTables.js')}}"></script>
+    <script src="{{=URL('static','js/dataTables.bootstrap.js')}}"></script>
     <!-- Page Specific Plugins -->
     <script src="{{=URL('static','js/tablesorter/jquery.tablesorter.js')}}"></script>
     <script src="{{=URL('static','js/tablesorter/tables.js')}}"></script>
@@ -93,6 +94,12 @@
           $('input[type="submit"]').removeClass('form-control');
           $('input[type="submit"]').addClass('btn-primary');
           $('input[type="submit"]').addClass('btn-block');
+	  $('#fbody').dataTable(
+	      {
+		  "language": {
+		      "url": "{{=URL('static','js/Spanish.json')}}"
+		  }
+	      });	  
       });
     </script>
   </body>
