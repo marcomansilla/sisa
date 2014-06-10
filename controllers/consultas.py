@@ -11,10 +11,13 @@ def certificados():
     db.certificados.establecimiento.default=request.args(0)
     db.certificados.establecimiento.writable=False
     db.certificados.establecimiento.readable=False
+    db.adicionales.certificado.readable=False
+    db.adicionales.certificado.writable=False
     nCertificado=SQLFORM(db.certificados)
 
     if nCertificado.process().accepted:
         db.cobros.insert(certificado=nCertificado.vars.id, importe=0.0, saldo=0.0)
+        db.adicionales.insert(certificado=nCertificado.vars.id)
         redirect(URL('consultas', 'certificados', args=(request.args(0), request.args(1))))
         session.flash='El certificado ha sido agregado'
         
@@ -47,12 +50,13 @@ def establecimientos():
 
     if nSucursal.process().accepted:
         redirect(URL('consultas','establecimientos', args=(request.args(0))))
+        session.flash='Se ha registrado el nuevo establecimiento'
     elif nSucursal.errors:
-        response.flash="Revise los datos ingresados"
+        response.flash='Por favor, revise los datos ingresados'
     
     return dict(nSucursal=nSucursal, sucursales=sucursales)
 
 @auth.requires_login()
 def imprimircertificado():
-    certificado=db((db.certificados.id==request.args(0))&(db.certificados.establecimiento==db.establecimientos.id)&(db.clientes.id==db.establecimientos.cliente)).select()
+    certificado=db((db.certificados.id==request.args(0))&(db.adicionales.certificado==db.certificados.id)&(db.certificados.establecimiento==db.establecimientos.id)&(db.clientes.id==db.establecimientos.cliente)).select()
     return dict(certificado=certificado)

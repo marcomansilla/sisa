@@ -1,4 +1,7 @@
-td.w2p_fc {color:grey;font-style:italic}
+td .w2p_fc {
+    color:grey;
+    font-style:italic
+}
 
 .encerrado {border-style:groove;border-width:10px; border-radius:10px}
 
@@ -85,4 +88,21 @@ td p{
 .firma{
     text-align:center;
     padding-top:50px;
+}
+
+
+div.error_wrapper {display:block}
+
+div .error {
+    width: 298px;
+    background:red;
+    border: 2px solid #d00;
+    color:white;
+    padding:5px;
+    display:inline-block;
+    background-image: -webkit-linear-gradient(left,#f00,#fdd);
+    background-image: -o-linear-gradient(left,#f00,#fdd);
+    background-image: -moz-linear-gradient(0deg, #f00, #fdd);
+    background-image: linear-gradient(left,#f00,#fdd);
+    background-repeat: repeat-y;
 }

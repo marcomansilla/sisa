@@ -17,16 +17,28 @@ def index():
 def clientes():
     response.subtitle+=' Clientes'
     clientes=db(db.clientes.id>0).select()
+    nCliente=SQLFORM(db.clientes)
 
-    return dict(clientes=clientes)
+    if nCliente.process().accepted:
+        redirect(URL('default','clientes'))
+    elif nCliente.errors:
+        response.flash='Por favor, revise los datos ingresados'
+
+    return dict(clientes=clientes, nCliente=nCliente)
 
 @auth.requires_login()
 def fumigadores():
     response.subtitle+=' Fumigadores'
     fumigadores=db(db.fumigadores.id>0).select()
 
+    nFumigador=SQLFORM(db.fumigadores)
+
+    if nFumigador.process().accepted:
+        redirect(URL('default','fumigadores'))
+    elif nFumigador.errors:
+        response.flash='Por favor revise los datos ingresados'
     
-    return dict(fumigadores=fumigadores)
+    return dict(fumigadores=fumigadores, nFumigador=nFumigador)
 
 @auth.requires_login()
 def cobros():

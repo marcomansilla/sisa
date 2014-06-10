@@ -38,7 +38,7 @@
         <h4 class="modal-title" id="nuevoEstablecimientoLabel">Nuevo Establecimiento</h4>
       </div>
       <div class="modal-body">
-	{{=crud.create(db.establecimientos, next=URL('consultas','establecimientos', args=(request.args(0))))}}
+	{{=nSucursal}}
       </div>
     </div>
   </div>
@@ -77,20 +77,3 @@
   </div>
 </div>
 {{pass}}
-
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(document).ready(function(){
-    $('#fbody').DataTable(
-  );
-  $('label').css('font-size','15px');
-  $('input').attr('placeholder','Escriba para filtrar');
-  $('input').css('color','black');
-  $('select').css('color','black');
-  $('.dataTables_filter label').addClass('label label-primary');
-});
-  });
-</script>
-    

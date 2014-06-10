@@ -8,6 +8,10 @@
 
     <title>{{=response.title}}</title>
 
+    <!-- Page Specific CSS -->
+    
+    {{include 'web2py_ajax.html'}}
+
     <!-- Bootstrap core CSS -->
     <link href="{{=URL('static','css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{=URL('static','css/jquery.dataTables.css')}}" rel="stylesheet">
@@ -15,8 +19,9 @@
     <!-- Add custom CSS here -->
     <link href="{{=URL('static','css/sb-admin.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{=URL('static','font-awesome/css/font-awesome.min.css')}}">
-    <!-- Page Specific CSS -->
-    {{include 'web2py_ajax.html'}}
+    <link href="{{=URL('static','css/web2py.css')}}" rel="stylesheet">
+    <link href="{{=URL('static','css/xignus.css')}}" rel="stylesheet">
+    
     <!-- include stylesheets -->
     {{
     response.files.insert(0,URL('static','css/web2py.css'))
@@ -31,7 +36,7 @@
   <body>
 
     <div id="wrapper">
-
+       <div class="flash">{{=response.flash or ''}}</div>
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -89,6 +94,7 @@
 
           $('form input').addClass('form-control');
           $('.w2p_fw').css('width', '100%');
+          $('.w2p_fc').css({'color': 'grey', 'font-size':'10px', 'font-style':'italic'});
           $('form input').addClass('input-xlarge');
           $('form select').addClass('form-control');
           $('input[type="submit"]').removeClass('form-control');
@@ -99,7 +105,7 @@
 		  "language": {
 		      "url": "{{=URL('static','js/Spanish.json')}}"
 		  }
-	      });	  
+	      });
       });
     </script>
   </body>

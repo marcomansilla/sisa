@@ -39,7 +39,7 @@
         <h4 class="modal-title" id="nuevoFumigadorLabel">Nuevo Fumigador</h4>
       </div>
       <div class="modal-body">
-	{{=crud.create(db.fumigadores, next=URL('default','fumigadores'))}}
+	{{=nFumigador}}
       </div>
     </div>
   </div>
@@ -94,14 +94,12 @@
 	  <thead>
 	    <th>Establecimiento</th>
 	    <th>Fecha</th>
-	    <th>Observaciones</th>
 	  </thead>
 	  <tbody id='fbody'>
 	    {{for trabajo in (db((db.certificados.fumigador==fumigador.id)&(db.certificados.establecimiento==db.establecimientos.id)).select()):}}
 	    <tr>
 	      <td>{{=trabajo.establecimientos.nombre}}</td>
 	      <td>{{=trabajo.certificados.fFumigacion}}</td>
-	      <td>{{=trabajo.certificados.observaciones}}</td>
 	    </tr>
 	    {{pass}}
 	  </tbody>
