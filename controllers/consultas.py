@@ -11,12 +11,14 @@ def certificados():
     db.certificados.establecimiento.default=request.args(0)
     db.certificados.establecimiento.writable=False
     db.certificados.establecimiento.readable=False
+    db.certificados.numero.requires=IS_NOT_IN_DB(db, 'certificados.numero')
     db.adicionales.certificado.readable=False
     db.adicionales.certificado.writable=False
+    
     nCertificado=SQLFORM(db.certificados)
 
     if nCertificado.process().accepted:
-        db.cobros.insert(certificado=nCertificado.vars.id, importe=0.0, saldo=0.0)
+        db.cobros.insert(certificado=nCertificado.vars.id, importe=0.0, pagado=0.0)
         db.adicionales.insert(certificado=nCertificado.vars.id)
         redirect(URL('consultas', 'certificados', args=(request.args(0), request.args(1))))
         session.flash='El certificado ha sido agregado'

@@ -12,7 +12,6 @@ db.define_table('clientes',
 db.clientes.nombre.requires=IS_NOT_EMPTY()
 db.clientes.apellido.requires=IS_NOT_EMPTY()
 db.clientes.domicilio.requires=IS_NOT_EMPTY()
-db.clientes.telefono.requires=IS_NOT_EMPTY()
 
 db.define_table('establecimientos',
                 Field('nombre'),
@@ -73,9 +72,9 @@ db.define_table('adicionales',
                 Field('observaciones','text')
 )
 
+
 db.define_table('cobros',
                 Field('certificado',db.certificados),
                 Field('importe', 'float'),
-                Field('saldo','float'),
-                Field('cancelado','boolean')
+                Field('pagado','float'),
 )

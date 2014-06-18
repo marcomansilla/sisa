@@ -9,14 +9,14 @@
   </thead>
   <tbody >
         {{for cobro in cobros:}}
-        {{if ((cobro.cobros.saldo==0)and(cobro.cobros.cancelado==True)and(cobro.cobros.importe>0)):}}
+        {{if ((cobro.cobros.pagado==0)and(cobro.cobros.cancelado==True)and(cobro.cobros.importe>0)):}}
 
-	{{elif ((cobro.cobros.saldo>0)and(cobro.cobros.cancelado==False)and(cobro.cobros.importe>0)):}}
+	{{elif ((cobro.cobros.importe>0)and(cobro.cobros.pagado>0)and(not(cobro.cobros.importe==cobro.cobros.pagado))):}}
 	    <tr class="warning">
 	      <td>{{=cobro.establecimientos.nombre}}</td>
 	      <td>{{=cobro.clientes.nombre+" "+cobro.clientes.apellido}}</td>
 	      <td>{{=cobro.certificados.fFumigacion}}</td>
-	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Saldo pendiente</a></td>
+	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Saldo pendiente ($ {{=cobro.cobros.importe - cobro.cobros.pagado}})</a></td>
 	    </tr>
 	{{else:}}
 	    <tr class="danger">

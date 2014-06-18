@@ -3,43 +3,43 @@
 
 <table id='fbody' class="table table-striped table-hover">
   <thead>
-    <th>Certificado <i class="fa fa-sort"></i></th>
-    <th>Fecha <i class="fa fa-sort"></i></th>
-    <th>Establecimiento <i class="fa fa-sort"></i></th>
-    <th>Importe <i class="fa fa-sort"></i></th>
-    <th>Saldo <i class="fa fa-sort"></i></th>
-    <th>Detalle <i class="fa fa-sort"></i></th>
-    <th>Editar <i class="fa fa-sort"></i></th>
+    <th>Certificado </th>
+    <th>Fecha </th>
+    <th>Establecimiento </th>
+    <th>Importe </th>
+    <th>Pagado </th>
+    <th>Detalle </th>
+    <th>Editar </th>
   </thead>
   <tbody>
     {{for cobro in cobros:}}
-        {{if ((cobro.cobros.saldo==0)and(cobro.cobros.cancelado==True)and(cobro.cobros.importe>0)):}}
+        {{if ((cobro.cobros.pagado==cobro.cobros.importe)and(cobro.cobros.importe>0)):}}
             <tr class="success">
 	      <td>{{=cobro.certificados.numero}}</td>
 	      <td>{{=cobro.certificados.fFumigacion}}</td>
 	      <td>{{=cobro.establecimientos.nombre}}</td>
-	      <td>{{=cobro.cobros.importe}}</td>
-	      <td>{{=cobro.cobros.saldo}}</td>
+	      <td>$ {{=cobro.cobros.importe}}</td>
+	      <td>$ {{=cobro.cobros.pagado or '0.0'}}</td>
 	      <td><a href="#verCobro{{=cobro.cobros.id}}" role="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-eye fa-white"></i> Ver</a></td>
 	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Pagado</a></td>
 	    </tr>
-	{{elif ((cobro.cobros.saldo>0)and(cobro.cobros.cancelado==False)and(cobro.cobros.importe>0)):}}
+	{{elif ((cobro.cobros.pagado>0)and(cobro.cobros.importe>0)):}}
 	    <tr class="warning">
 	      <td>{{=cobro.certificados.numero}}</td>
 	      <td>{{=cobro.certificados.fFumigacion}}</td>
 	      <td>{{=cobro.establecimientos.nombre}}</td>
-	      <td>{{=cobro.cobros.importe}}</td>
-	      <td>{{=cobro.cobros.saldo}}</td>
+	      <td>$ {{=cobro.cobros.importe}}</td>
+	      <td>$ {{=cobro.cobros.pagado or '0.0'}}</td>
 	      <td><a href="#verCobro{{=cobro.cobros.id}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-eye fa-white"></i> Ver</a></td>
-	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Saldo pendiente</a></td>
+	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Saldo pendiente ($ {{=cobro.cobros.importe - cobro.cobros.pagado}})</a></td>
 	    </tr>
 	{{else:}}
 	    <tr class="danger">
 	      <td>{{=cobro.certificados.numero}}</td>
 	      <td>{{=cobro.certificados.fFumigacion}}</td>
 	      <td>{{=cobro.establecimientos.nombre}}</td>
-	      <td>{{=cobro.cobros.importe}}</td>
-	      <td>{{=cobro.cobros.saldo}}</td>
+	      <td>$ {{=cobro.cobros.importe}}</td>
+	      <td>$ {{=cobro.cobros.pagado or '0.0'}}</td>
 	      <td><a href="#verCobro{{=cobro.cobros.id}}" role="button" class="btn btn-danger" data-toggle="modal"><i class="fa fa-eye fa-white"></i> Ver</a></td>
 	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-danger" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Adeudado</a></td>
 	    </tr>
@@ -75,7 +75,7 @@
         <h4 class="modal-title" id="editarCobro{{=cobro.cobros.id}}Label">Editar pago</h4>
       </div>
       <div class="modal-body">
-	    {{=crud.update(db.cobros, cobro.cobros.id, next=URL('consultas','cobros', args=(cobro.certificados.establecimiento)), deletable=False)}}
+	    {{=crud.update(db.cobros, cobro.cobros.id, next=URL('consultas','cobros', args=(request.args(0))), deletable=False)}}
       </div>
     </div>
   </div>
