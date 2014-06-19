@@ -9,7 +9,7 @@
   </thead>
   <tbody >
         {{for cobro in cobros:}}
-        {{if ((cobro.cobros.pagado==0)and(cobro.cobros.cancelado==True)and(cobro.cobros.importe>0)):}}
+        {{if ((cobro.cobros.pagado==0)and(cobro.cobros.importe>0)):}}
 
 	{{elif ((cobro.cobros.importe>0)and(cobro.cobros.pagado>0)and(not(cobro.cobros.importe==cobro.cobros.pagado))):}}
 	    <tr class="warning">

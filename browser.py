@@ -86,6 +86,6 @@ if __name__ == "__main__":
     load_web2py()
     app = QtGui.QApplication(sys.argv)
     wb = MainWindow()
-    wb.addTab(QtCore.QUrl('http://127.0.0.1:8000/sisa'))
+    wb.addTab(QtCore.QUrl('http://127.0.0.1:8000/sisapretty'))
     wb.show()
     sys.exit(app.exec_())
