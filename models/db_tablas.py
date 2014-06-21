@@ -77,4 +77,5 @@ db.define_table('cobros',
                 Field('certificado',db.certificados),
                 Field('importe', 'float'),
                 Field('pagado','float'),
+                Field('pago', 'double')
 )

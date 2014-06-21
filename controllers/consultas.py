@@ -62,3 +62,17 @@ def establecimientos():
 def imprimircertificado():
     certificado=db((db.certificados.id==request.args(0))&(db.adicionales.certificado==db.certificados.id)&(db.certificados.establecimiento==db.establecimientos.id)&(db.clientes.id==db.establecimientos.cliente)).select()
     return dict(certificado=certificado)
+
+def actualizarCobro():
+    response.subtitle+='Actualizar cupon de pago'
+    db.cobros.id.readable=False
+    db.cobros.certificado.writable=False
+    cupon=SQLFORM(db.cobros, request.args(0))
+    
+    if cupon.process().accepted:
+        redirect(URL('consultas','cobros', args=(request.args(1))))
+        session.flash='Se ha actualizado el cupon'
+    elif cupon.errors:
+        response.flash='Por favor verifique los datos'
+        
+    return dict(cupon=cupon)

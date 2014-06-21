@@ -41,7 +41,7 @@
 	      <td>$ {{=cobro.cobros.importe}}</td>
 	      <td>$ {{=cobro.cobros.pagado or '0.0'}}</td>
 	      <td><a href="#verCobro{{=cobro.cobros.id}}" role="button" class="btn btn-danger" data-toggle="modal"><i class="fa fa-eye fa-white"></i> Ver</a></td>
-	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-danger" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Adeudado</a></td>
+	      <td><a href="{{=URL('consultas','actualizarCobro', args=(cobro.cobros.id, request.args(0)))}}" role="button" class="btn btn-danger"><i class="fa fa-pencil fa-white"></i> Adeudado</a></td>
 	    </tr>
         {{pass}}
     {{pass}}

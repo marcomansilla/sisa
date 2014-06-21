@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+
+{{=cupon}}
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#cobros_pago").change(function(){
+      $("#cobros_pagado").val($("#cobros_pagado")+$(this).val());
+  });
+  });
+</script>
