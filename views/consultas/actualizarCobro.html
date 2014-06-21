@@ -5,8 +5,15 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-  $("#cobros_pago").change(function(){
-      $("#cobros_pagado").val($("#cobros_pagado")+$(this).val());
+  $("#cobros_pagado").attr("disabled","disabled")
+  var pago=$("#cobros_pagado").val();
+  $("#cobros_pago").keyup(function(){
+     if ($(this).val()){
+      $("#cobros_pagado").val(parseFloat($("#cobros_pago").val())+parseFloat(pago));
+     }
+     else{
+      $("#cobros_pagado").val(pago);
+     }
   });
   });
 </script>

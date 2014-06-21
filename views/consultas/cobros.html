@@ -21,7 +21,7 @@
 	      <td>$ {{=cobro.cobros.importe}}</td>
 	      <td>$ {{=cobro.cobros.pagado or '0.0'}}</td>
 	      <td><a href="#verCobro{{=cobro.cobros.id}}" role="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-eye fa-white"></i> Ver</a></td>
-	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Pagado</a></td>
+	      <td><a href="{{=URL('consultas','actualizarCobro', args=(cobro.cobros.id, request.args(0)))}}" role="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Pagado</a></td>
 	    </tr>
 	{{elif ((cobro.cobros.pagado>0)and(cobro.cobros.importe>0)):}}
 	    <tr class="warning">
@@ -31,7 +31,7 @@
 	      <td>$ {{=cobro.cobros.importe}}</td>
 	      <td>$ {{=cobro.cobros.pagado or '0.0'}}</td>
 	      <td><a href="#verCobro{{=cobro.cobros.id}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-eye fa-white"></i> Ver</a></td>
-	      <td><a href="#editarCobro{{=cobro.cobros.id}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Saldo pendiente ($ {{=cobro.cobros.importe - cobro.cobros.pagado}})</a></td>
+	      <td><a href="{{=URL('consultas','actualizarCobro', args=(cobro.cobros.id, request.args(0)))}}" role="button" class="btn btn-warning" data-toggle="modal"><i class="fa fa-pencil fa-white"></i> Saldo pendiente ($ {{=cobro.cobros.importe - cobro.cobros.pagado}})</a></td>
 	    </tr>
 	{{else:}}
 	    <tr class="danger">
