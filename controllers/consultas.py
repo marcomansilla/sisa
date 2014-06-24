@@ -68,7 +68,7 @@ def actualizarCobro():
     db.cobros.id.readable=False
     db.cobros.certificado.writable=False
     cupon=SQLFORM(db.cobros, request.args(0))
-    
+    cupon.add_button("Cancelar",URL('consultas','cobros', args=(request.args(1))))
     if cupon.process().accepted:
         redirect(URL('consultas','cobros', args=(request.args(1))))
         session.flash='Se ha actualizado el cupon'
