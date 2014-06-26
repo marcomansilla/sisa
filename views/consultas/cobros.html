@@ -64,20 +64,3 @@
   </div>
 </div>
 {{pass}}
-
-<!-- editar cobros -->
-{{for cobro in cobros:}}
-<div class="modal fade" id="editarCobro{{=cobro.cobros.id}}" tabindex="-1" role="dialog" aria-labelledby="editarCobro{{=cobro.cobros.id}}Label" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="editarCobro{{=cobro.cobros.id}}Label">Editar pago</h4>
-      </div>
-      <div class="modal-body">
-	    {{=crud.update(db.cobros, cobro.cobros.id, next=URL('consultas','cobros', args=(request.args(0))), deletable=False)}}
-      </div>
-    </div>
-  </div>
-</div>
-{{pass}}
